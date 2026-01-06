@@ -3,47 +3,39 @@ let searchResultsEl = document.getElementById("searchResults");
 let spinnerEl = document.getElementById("spinner");
 
 function createAndAppendSerachResult(result) {
-    let {
-        title,
-        link,
-        description
-    } = result;
+    let title = result.title;
+    let link = result.link;
+    let description = result.description;
 
-    //1. div container - create result item 
     let resultItemEl = document.createElement("div");
     resultItemEl.classList.add("result-item");
     searchResultsEl.appendChild(resultItemEl);
 
-    //2. Anchor Title -- result-title
-    let resultTitleEl = document.createElement("a");
-    resultTitleEl.classList.add("result-title");
-    resultTitleEl.textContent = title;
-    resultTitleEl.href = link;
-    resultTitleEl.target = "_blank";
-    resultItemEl.appendChild(resultTitleEl);
+    let titleEl = document.createElement("a");
+    titleEl.href = link;
+    titleEl.target = "_blank";
+    titleEl.textContent = title;
+    titleEl.classList.add("result-title");
+    resultItemEl.appendChild(titleEl);
 
-    //3. Title Break 
-    let titleBreakEl = document.createElement("br");
-    resultItemEl.appendChild(titleBreakEl);
+    resultItemEl.appendChild(document.createElement("br"));
 
-    //4. Anchor URL -- result-url
     let urlEl = document.createElement("a");
-    urlEl.classList.add("result-url");
     urlEl.href = link;
     urlEl.target = "_blank";
     urlEl.textContent = link;
+    urlEl.classList.add("result-url");
     resultItemEl.appendChild(urlEl);
 
-    //5.Line Break 
-    let lineBreakEl = document.createElement("br");
-    resultItemEl.appendChild(lineBreakEl);
+    resultItemEl.appendChild(document.createElement("br"));
 
-    //6. Paragraph Description -- line-description
-    let descriptionEl = document.createElement("p");
-    descriptionEl.classList.add("line-description");
-    descriptionEl.textContent = description;
-    resultItemEl.appendChild(descriptionEl);
+    let descEl = document.createElement("p");
+    descEl.textContent = description;
+    descEl.classList.add("link-description");
+    resultItemEl.appendChild(descEl);
 }
+
+
 
 function displayResults(searchResults) {
     spinnerEl.classList.toggle("d-none");
